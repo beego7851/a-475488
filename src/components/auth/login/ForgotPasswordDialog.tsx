@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2 } from "lucide-react";
-import PasswordInput from "./PasswordInput";
 
 interface ForgotPasswordDialogProps {
   open: boolean;
@@ -15,24 +14,12 @@ interface ForgotPasswordDialogProps {
 export const ForgotPasswordDialog = ({ open, onOpenChange }: ForgotPasswordDialogProps) => {
   const [memberNumber, setMemberNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    if (password !== confirmPassword) {
-      toast({
-        title: "Error",
-        description: "Passwords don't match",
-        variant: "destructive",
-      });
-      setLoading(false);
-      return;
-    }
 
     try {
       // Check if member exists and get their profile
@@ -114,25 +101,6 @@ export const ForgotPasswordDialog = ({ open, onOpenChange }: ForgotPasswordDialo
               disabled={loading}
             />
           </div>
-          <PasswordInput
-            password={password}
-            setPassword={setPassword}
-            loading={loading}
-          />
-          <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-dashboard-text mb-2">
-              Confirm Password
-            </label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
-              required
-              disabled={loading}
-            />
-          </div>
           <div className="flex justify-end space-x-2">
             <Button
               type="button"
@@ -149,7 +117,7 @@ export const ForgotPasswordDialog = ({ open, onOpenChange }: ForgotPasswordDialo
                   Sending...
                 </>
               ) : (
-                "Reset Password"
+                "Send Reset Link"
               )}
             </Button>
           </div>
