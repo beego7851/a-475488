@@ -9,9 +9,9 @@ export const ForgotPasswordButton = () => {
     <>
       <Button
         type="button"
-        variant="link"
+        variant="secondary"
         onClick={() => setOpen(true)}
-        className="text-sm text-dashboard-muted hover:text-dashboard-text"
+        className="w-full bg-dashboard-accent2 text-white hover:bg-dashboard-accent2/80"
       >
         Forgot Password?
       </Button>

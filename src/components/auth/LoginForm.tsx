@@ -16,9 +16,12 @@ const LoginForm = () => {
           loading={loading}
         />
 
-        <LoginButton loading={loading} />
-        <div className="flex justify-between items-center">
+        <div className="space-y-4">
+          <LoginButton loading={loading} />
           <ForgotPasswordButton />
+        </div>
+        
+        <div className="flex justify-end">
           <LegalLinks />
         </div>
       </form>
